@@ -51,4 +51,4 @@ node_modules
 READMEtest.md
 
 #SQLITE IGNORE
-.sqlite 
+mock-da.sqlite 
