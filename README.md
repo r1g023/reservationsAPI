@@ -1,2 +1,0 @@
-# reservationsAPI
-Node Express API
