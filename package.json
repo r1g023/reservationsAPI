@@ -4,7 +4,8 @@
   "description": "Node Express API",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server": "cross-env NODE_ENV=development nodemon require dotenv/config index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,19 @@
   "bugs": {
     "url": "https://github.com/rigo0523/reservationsAPI/issues"
   },
-  "homepage": "https://github.com/rigo0523/reservationsAPI#readme"
+  "homepage": "https://github.com/rigo0523/reservationsAPI#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "knex": "^0.95.14",
+    "sqlite": "^4.0.23",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "eslint": "^8.2.0",
+    "nodemon": "^2.0.15"
+  }
 }
