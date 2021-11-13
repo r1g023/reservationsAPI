@@ -14,3 +14,8 @@ function get() {
 function getById(id) {
   return db("reservations").where({ id }).first();
 }
+
+// //UPDATE/api/reservations/:id
+// function updateReservation(data, id) {
+
+// }

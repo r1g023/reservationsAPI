@@ -2,8 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-
-//server
 const server = express();
 
 //Global middleware
@@ -27,7 +25,7 @@ server.use((err, req, res, next) => {
   });
 });
 
-//Server endpoints --------->
+//Server API up and running
 server.use("/", (req, res, next) => {
   res.json({ message: "api up and running" });
 });
