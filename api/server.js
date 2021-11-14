@@ -25,9 +25,4 @@ server.use((err, req, res, next) => {
   });
 });
 
-//Server API up and running
-server.use("/", (req, res, next) => {
-  res.json({ message: "api up and running" });
-});
-
 module.exports = server;

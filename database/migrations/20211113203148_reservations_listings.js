@@ -12,6 +12,7 @@ exports.up = function (knex) {
       .unsigned()
       .notNull()
       .references("listings.id")
+      .onDelete("CASCADE")
       .onUpdate("CASCADE");
     tbl.primary(["reservation_id", "listing_id"]);
   });

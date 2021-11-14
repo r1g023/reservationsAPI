@@ -3,9 +3,9 @@ exports.up = function (knex) {
     knex.schema
       //reservations
       .alterTable("reservations", (tbl) => {
-        tbl.date("check-in");
-        tbl.date("check-out");
-        tbl.
+        tbl.date("check-in").notNull().defaultTo("00 / 00 / 0000");
+        tbl.date("check-out").notNull().defaultTo("00 / 00 / 0000");
+        tbl.timestamps(true);
       })
   );
 };
