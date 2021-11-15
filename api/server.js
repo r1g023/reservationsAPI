@@ -10,10 +10,12 @@ server.use(cors());
 server.use(express.json());
 
 //import routers
+const welcomeRouter = require("../welcome/welcome-router");
 const reservationsRouter = require("../reservations/reservations-router");
 const listingsRouter = require("../listings/listings-router");
 
 //Server endpoints --------->
+server.use("/", welcomeRouter);
 server.use("/api/reservations", reservationsRouter);
 server.use("/api/listings", listingsRouter);
 

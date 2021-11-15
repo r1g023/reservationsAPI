@@ -5,6 +5,8 @@ module.exports = {
   getById,
   getReservationsListings,
   searchPagination,
+  postReservation,
+  updateReservation,
 };
 
 //GET /api/reservations?id=0101
@@ -41,4 +43,33 @@ function getReservationsListings(id) {
     )
     .join("listings", "listings.id", "=", "reservations_listings.listing_id")
     .where({ reservation_id: id });
+}
+
+//POST /api/reservation
+async function postReservation(data) {
+  const [newPost] = await db("reservations").insert(data, [
+    "id",
+    "reference",
+    "door_key_code",
+    "guest_first_name",
+    "guest_last_name",
+    "guest_phone",
+    "is_rewards_member",
+    "price",
+    "guests_count",
+    "check-in",
+    "check-out",
+  ]);
+  return newPost;
+}
+
+//UPDATE /api/reservations/:id
+function updateReservation(changes, id) {
+  return db("reservations")
+    .update(changes)
+    .where({ id })
+    .then((ids) => {
+      console.log("post ids----->", ids);
+      return db("reservations").where({ id: id }).first();
+    });
 }
