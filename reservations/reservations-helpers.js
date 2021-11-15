@@ -4,11 +4,24 @@ module.exports = {
   get,
   getById,
   getReservationsListings,
+  searchPagination,
 };
 
-//GET /api/reservations
-function get() {
-  return db("reservations").orderBy("id");
+//GET /api/reservations?id=0101
+function get(query) {
+  const searchProperty = db("reservations").where(query);
+  return searchProperty;
+}
+
+//GET /api/reservations/search?limit=20&sortby=guest_first_name&page=1,2,3,4
+function searchPagination(query) {
+  const { page = 1, limit = 20, sortby = "id", sortdir = "asc" } = query;
+  const offset = limit * (page - 1);
+  let rows = db("reservations")
+    .orderBy(sortby, sortdir)
+    .limit(limit)
+    .offset(offset);
+  return rows;
 }
 
 //GET /api/reservations/:id
@@ -16,6 +29,7 @@ function getById(id) {
   return db("reservations").where({ id }).first();
 }
 
+// { reservation_id: "22gcgd3xurs7jw46", listing_id: "2qz9pjsgtjunhqzu" } -- both reservation and listing linked
 //GET /api/reservations/:id/listings
 function getReservationsListings(id) {
   return db("reservations_listings")
