@@ -69,7 +69,7 @@ function updateReservation(changes, id) {
     .update(changes)
     .where({ id })
     .then((ids) => {
-      console.log("post ids----->", ids);
+      console.log("post ids----->", id);
       return db("reservations").where({ id: id }).first();
     });
 }
