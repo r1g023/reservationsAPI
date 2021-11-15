@@ -85,16 +85,16 @@ router.put("/:id", (req, res, next) => {
     .catch((err) => next(err));
 });
 
-//UPDATE /api/reservations/:id
-router.put("/:id", (req, res, next) => {
-  const { id } = req.params;
-  const changes = req.body;
-  Reservations.updateMultipleReservations(changes, id)
-    .then((updatedReservation) => {
-      res.status(200).json(updatedReservation);
-    })
-    .catch((err) => next(err));
-});
+// //UPDATE /api/reservations/:id
+// router.put("/:id/:id", (req, res, next) => {
+//   const { id } = req.params;
+//   const changes = req.body;
+//   Reservations.updateMultipleReservations(changes, id)
+//     .then((updatedReservation) => {
+//       res.status(200).json(updatedReservation);
+//     })
+//     .catch((err) => next(err));
+// });
 
 // //POST /api/reservations/:id/listings --> join a listing by user reservation
 // router.post("/:id/listings", async (req, res, next) => {
