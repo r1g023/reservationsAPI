@@ -63,7 +63,7 @@ async function postReservation(data) {
   return newPost;
 }
 
-//UPDATE /api/reservations/:id
+// UPDATE /api/reservations/:id
 function updateReservation(changes, id) {
   return db("reservations")
     .update(changes)

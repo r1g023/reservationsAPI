@@ -61,21 +61,9 @@ router.post("/", (req, res, next) => {
   console.log("random ID", randomID);
 
   const reservationBody = req.body;
-  console.log("poslt--->", reservationBody);
+  reservationBody.id = randomID;
 
-  Reservations.postReservation({
-    id: randomID,
-    reference: reservationBody.reference,
-    door_key_code: reservationBody.door_key_code,
-    guest_first_name: reservationBody.guest_first_name,
-    guest_last_name: reservationBody.guest_last_name,
-    guest_phone: reservationBody.guest_phone,
-    is_rewards_member: reservationBody.is_rewards_member,
-    price: reservationBody.price,
-    guests_count: reservationBody.guests_count,
-    check_in: reservationBody.check_in,
-    check_out: reservationBody.check_out,
-  })
+  Reservations.postReservation(reservationBody)
     .then((reservation) => {
       res.status(201).json(reservation);
     })
@@ -88,11 +76,42 @@ router.put("/:id", (req, res, next) => {
   const changes = req.body;
   Reservations.updateReservation(changes, id)
     .then((updatedReservation) => {
-      updatedReservation
-        ? res.status(200).json({ class_updated: updatedReservation })
-        : res.status(404).json({ error: "error updating class" });
+      updatedReservation.is_rewards_member = Boolean(
+        updatedReservation.is_rewards_member
+      );
+
+      res.status(200).json(updatedReservation);
     })
     .catch((err) => next(err));
 });
+
+//UPDATE /api/reservations/:id
+router.put("/:id", (req, res, next) => {
+  const { id } = req.params;
+  const changes = req.body;
+  Reservations.updateMultipleReservations(changes, id)
+    .then((updatedReservation) => {
+      res.status(200).json(updatedReservation);
+    })
+    .catch((err) => next(err));
+});
+
+// //POST /api/reservations/:id/listings --> join a listing by user reservation
+// router.post("/:id/listings", async (req, res, next) => {
+//   const randomID = new Array(16).join().replace(/(.|$)/g, function () {
+//     return ((Math.random() * 36) | 0).toString(36);
+//   });
+
+//   const { id } = req.params;
+//   const reservationBody = req.body;
+//   reservationBody.id = randomID;
+
+//   Reservations.postReservationListing(reservationBody, id)
+//     .then((listing) => {
+//       console.log("listing------>", listing);
+//       res.json(listing);
+//     })
+//     .catch((err) => next(err));
+// });
 
 module.exports = router;
