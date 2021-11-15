@@ -47,8 +47,4 @@
 #node modules
 node_modules
 
-#read me
-READMEchal.md
 
-#SQLITE IGNORE
-mock-data.sqlite
