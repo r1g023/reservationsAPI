@@ -10,10 +10,10 @@
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run",
     "rollback": "knex migrate:rollback",
-    "migrateh": "heroku run knex migrate:latest -a reservations-api2",
-    "rollbackh": "heroku run knex migrate:rollback -a reservations-api2",
-    "seedh": "heroku run knex seed:run -a reservations-api2",
-    "databaseh": "heroku pg:psql -a reservations-api2",
+    "migrateh": "heroku run knex migrate:latest -a reservations-api23",
+    "rollbackh": "heroku run knex migrate:rollback -a reservations-api23",
+    "seedh": "heroku run knex seed:run -a reservations-api23",
+    "databaseh": "heroku pg:psql -a reservations-api23",
     "deploy": "git push heroku main"
   },
   "repository": {
