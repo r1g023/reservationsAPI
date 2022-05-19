@@ -1,9 +1,9 @@
 require("dotenv").config();
 module.exports = {
   development: {
-    client: "sqlite3",
+    client: "sqlite",
     connection: {
-      filename: "./database/reservationsListings1.db3",
+      filename: "./database/reservationsListings2.db3",
     },
     useNullAsDefault: true,
     migrations: {
