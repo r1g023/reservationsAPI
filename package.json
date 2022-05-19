@@ -4,8 +4,17 @@
   "description": "Node Express API",
   "main": "index.js",
   "scripts": {
-    "server": "cross-env NODE_ENV=development nodemon require dotenv/config index.js",
-    "start": "node index.js"
+    "test": "cross-env NODE_ENV=testing jest --watch --verbose --runInBand --silent",
+    "server": "nodemon index.js",
+    "start": "node index.js",
+    "migrate": "knex migrate:latest",
+    "seed": "knex seed:run",
+    "rollback": "knex migrate:rollback",
+    "migrateh": "heroku run knex migrate:latest -a reservations-api2",
+    "rollbackh": "heroku run knex migrate:rollback -a reservations-api2",
+    "seedh": "heroku run knex seed:run -a reservations-api2",
+    "databaseh": "heroku pg:psql -a reservations-api2",
+    "deploy": "git push heroku main"
   },
   "repository": {
     "type": "git",
@@ -21,16 +30,16 @@
   "dependencies": {
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
-    "express": "^4.17.1",
-    "helmet": "^4.6.0",
-    "knex": "^0.95.14",
-    "sqlite": "^4.0.23",
-    "sqlite3": "^5.0.2"
+    "express": "^4.18.1",
+    "helmet": "^5.1.0",
+    "knex": "^2.0.0",
+    "sqlite": "^4.1.1",
+    "sqlite3": "^5.0.8"
   },
   "devDependencies": {
-    "dotenv": "^10.0.0",
-    "eslint": "^8.2.0",
+    "dotenv": "^16.0.1",
+    "eslint": "^8.15.0",
     "knex-cleaner": "^1.3.1",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.16"
   }
 }
