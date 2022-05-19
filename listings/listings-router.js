@@ -5,9 +5,9 @@ const Listings = require("./listings-helpers");
 router.get("/", (req, res, next) => {
   Listings.get()
     .then((listing) => {
-      listing.map((amenity) => {
-        amenity.amenities = Object.assign([], amenity.amenities.split(","));
-      });
+      // listing.map((amenity) => {
+      //   amenity.amenities = Object.assign([], amenity.amenities.split(","));
+      // });
 
       listing
         ? res.status(200).json(listing)
