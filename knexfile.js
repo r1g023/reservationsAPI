@@ -3,7 +3,7 @@ module.exports = {
   development: {
     client: "sqlite3",
     connection: {
-      filename: "./database/reservationsListings2.db3",
+      filename: "./database/listings.db3",
     },
     useNullAsDefault: true,
     migrations: {
