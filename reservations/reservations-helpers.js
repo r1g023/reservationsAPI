@@ -56,7 +56,7 @@ async function postReservation(data) {
     "guest_phone",
     "is_rewards_member",
     "price",
-    "guests_count",
+    "guest_count",
     "check-in",
     "check-out",
   ]);
