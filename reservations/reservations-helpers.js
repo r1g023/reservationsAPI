@@ -47,20 +47,27 @@ function getReservationsListings(id) {
 
 //POST /api/reservation
 async function postReservation(data) {
-  const [newPost] = await db("reservations").insert(data, [
-    "id",
-    "reference",
-    "door_key_code",
-    "guest_first_name",
-    "guest_last_name",
-    "guest_phone",
-    "is_rewards_member",
-    "price",
-    "guest_count",
-    "check-in",
-    "check-out",
-  ]);
-  return newPost;
+  // THIS METHOD IS USEFUL WHEN USING POSTGRES
+  // const [newPost] = await db("reservations").insert(data, [
+  //   "id",
+  //   "reference",
+  //   "door_key_code",
+  //   "guest_first_name",
+  //   "guest_last_name",
+  //   "guest_phone",
+  //   "is_rewards_member",
+  //   "price",
+  //   "guest_count",
+  //   "check_in",
+  //   "check_out",
+  // ]);
+  // return newPost;
+  return db("reservations")
+    .insert(data)
+    .then((ids) => {
+      console.log("post ids----->", ids);
+      return db("reservations").where({ id: ids }).first();
+    });
 }
 
 // UPDATE /api/reservations/:id

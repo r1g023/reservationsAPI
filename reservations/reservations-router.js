@@ -55,13 +55,13 @@ router.get("/:id/listings", (req, res, next) => {
 
 //POST /api/reservations
 router.post("/", (req, res, next) => {
-  const randomID = new Array(16).join().replace(/(.|$)/g, function () {
-    return ((Math.random() * 36) | 0).toString(36);
-  });
-  console.log("random ID", randomID);
+  // const randomID = new Array(16).join().replace(/(.|$)/g, function () {
+  //   return ((Math.random() * 36) | 0).toString(36);
+  // });
+  // console.log("random ID", randomID);
 
   const reservationBody = req.body;
-  reservationBody.id = randomID;
+  // reservationBody.id = randomID;
 
   Reservations.postReservation(reservationBody)
     .then((reservation) => {
