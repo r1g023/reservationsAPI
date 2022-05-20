@@ -3,11 +3,14 @@ const Reservations = require("./reservations-helpers");
 
 //GET /api/reservations?id=0101
 router.get("/", async (req, res, next) => {
+  console.log("reqquery-------------------->", req.query);
   try {
     const allReservations = await Reservations.get(req.query);
+
     allReservations.map((rewards) => {
       rewards.is_rewards_member = Boolean(rewards.is_rewards_member);
     });
+
     res.status(200).json({ query: req.query, allReservations });
   } catch (err) {
     next(err);
